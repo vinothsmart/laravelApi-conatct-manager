@@ -1,8 +1,6 @@
 ## Installed Laravel Packages
 
-https://jwt-auth.readthedocs.io/en/docs/laravel-installation/
-
-<p align="center">composer require tymon/jwt-auth </p>
+<p align="center">[composer require tymon/jwt-auth] (https://jwt-auth.readthedocs.io/en/docs/laravel-installation/) </p>
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
