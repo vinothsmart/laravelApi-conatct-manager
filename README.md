@@ -2,6 +2,12 @@
 
 [composer require tymon/jwt-auth](https://jwt-auth.readthedocs.io/en/docs/laravel-installation/).
 
+### `composer require tymon/jwt-auth`
+
+[Generate secret key](https://jwt-auth.readthedocs.io/en/docs/laravel-installation/).
+
+### `php artisan jwt:secret`
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
