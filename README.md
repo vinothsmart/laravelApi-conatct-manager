@@ -8,6 +8,10 @@
 
 ### `php artisan jwt:secret`
 
+[Publish the config](https://jwt-auth.readthedocs.io/en/docs/laravel-installation/).
+
+### `php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"`
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
