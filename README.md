@@ -18,7 +18,7 @@
 
 [Then Update Auth Config](https://github.com/vinothsmart/laravelApi-conatct-manager/commit/56bacee02d0e4676aa65414032d6b8c8d986eac3).
 
-<p align="center"> Then Creating Controller AuthController <p align="center">
+[Then Creating Controller AuthController]
 
 ### `php artisan make:controller User/AuthController`
 
