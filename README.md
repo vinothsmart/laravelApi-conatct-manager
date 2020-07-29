@@ -14,6 +14,14 @@
 
 [Update your User model](https://jwt-auth.readthedocs.io/en/docs/quick-start/).
 
+[Check the commit](https://github.com/vinothsmart/laravelApi-conatct-manager/commit/8406cf5dbe1b256bf50b9492f1db6d5d1ceebae2#diff-36f1184e0453df972dab51127e08458f).
+
+[Then Update Auth Config](https://github.com/vinothsmart/laravelApi-conatct-manager/commit/56bacee02d0e4676aa65414032d6b8c8d986eac3).
+
+<p align="center"> Then Creating Controller AuthController <p align="center">
+
+### `php artisan make:controller User/AuthController`
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
