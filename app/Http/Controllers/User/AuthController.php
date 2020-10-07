@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    protected $user;
+
     public function __construct()
     {
         $this->user = new User;
