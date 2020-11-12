@@ -50,7 +50,7 @@ class AuthController extends Controller
         ]);
 
         if ($registerComplete) {
-            $this->login($request);
+            return $this->login($request);
         }
     }
 
