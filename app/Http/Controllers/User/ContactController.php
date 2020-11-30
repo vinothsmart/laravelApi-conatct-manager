@@ -82,4 +82,28 @@ class ContactController extends Controller
             "meassage" => "contacts saved sucessfully",
         ], 200);
     }
+
+    // getting contacts specific to a particular user
+    public function getPaginatedData($pagination = null, $token)
+    {
+        $file_directory = $this->base_url . "profile_images";
+        $user = auth("users")->authenicate($token);
+        $user_id = $user->user_id;
+        if ($pagination == null || $pagination == "") {
+            $contacts = $this->contacts->where("user_id", $user_id)->orderBy("id", "DESC")->toArray();
+            return reposne()->json([
+                "sucesss" => true,
+                "data" => $contacts,
+                "file_directory" => $file_directory,
+            ], 200);
+        }
+
+        $contact_paginated = $this->contacts->where("user_id", $user_id)->orderBy("id", "DESC")->paginate($pagination);
+
+        return reposne()->json([
+            "sucesss" => true,
+            "data" => $contact_paginated,
+            "file_directory" => $file_directory,
+        ], 200);
+    }
 }
