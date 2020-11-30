@@ -106,4 +106,28 @@ class ContactController extends Controller
             "file_directory" => $file_directory,
         ], 200);
     }
+
+    // update contact endpoint / function
+    public function editSingleData(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            "firstname" => "required|string",
+            "phonenumber" => "required|string",
+        ]);
+
+        if ($validator->fails()) {
+            return reposne()->json([
+                "sucesss" => false,
+                "meassage" => $validator->messages()->toArray(),
+            ], 500);
+        }
+
+        $findData = $this->contacts::find($id);
+        if (!findData) {
+            return reposne()->json([
+                "sucesss" => false,
+                "meassage" => "Please this content has no valid id",
+            ], 500);
+        }
+    }
 }
