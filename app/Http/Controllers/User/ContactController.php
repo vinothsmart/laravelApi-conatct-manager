@@ -129,5 +129,48 @@ class ContactController extends Controller
                 "meassage" => "Please this content has no valid id",
             ], 500);
         }
+        $getFile = $fineData->image_file;
+        $getFile = "default-avatar.png" ?: unlink("./profile_images/" . $getFile);
+
+        $profile_picture = $request->profile_image;
+        $file_name = "";
+
+        if ($profile_picture == null) {
+            $file_name = "default-avatar.png";
+        } else {
+            $generate_name = uniqid() . "_" . time() . date("Ymd") . "_IMG";
+            $base64Image = $profile_picture;
+            $file_name = file_get_contents($base64Image);
+            $mimetype = mime_content_type($fileBin);
+            if ("image/png" == $mimetype) {
+                $file_name = $generate_name . "png";
+            } else if ("image/jpeg" == $mimetype) {
+                $file_name = $generate_name . "jpeg";
+            } else if ("image/jpg" == $mimetype) {
+                $file_name = $generate_name . "jpg";
+            } else {
+                return reposne()->json([
+                    "sucesss" => false,
+                    "meassage" => "only png, jpg and jpeg files are accepted for setting profile pictures",
+                ], 500);
+            }
+        }
+
+        $findData->firstname = $request->firstname;
+        $findData->phonenumber = $request->phonenumber;
+        $findData->image_file = $file_name;
+        $findData->lastname = $request->lastname;
+        $findData->email = $request->email;
+        $fineData->save();
+        if ($profile_picture == null) {
+
+        } else {
+            file_put_contents("./profile_images/" . $file_name, $fileBin);
+        }
+
+        return reposne()->json([
+            "sucesss" => true,
+            "meassage" => "contacts updated sucessfully",
+        ], 200);
     }
 }
