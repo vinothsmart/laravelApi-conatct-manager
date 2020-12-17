@@ -173,4 +173,24 @@ class ContactController extends Controller
             "meassage" => "contacts updated sucessfully",
         ], 200);
     }
+
+    // deleting contacts endpoint
+    public function deleteContacts($id)
+    {
+        $fineData = $this->contacts::find($id);
+        if (!$fineData) {
+            return reposne()->json([
+                "sucesss" => true,
+                "meassage" => "contacts with id doesnt exist",
+            ], 500);
+        }
+        $getFile = $fineData->image_file;
+        if ($fineData->delete()) {
+            $getFile == "default-avatar.png" ?: unlink("./profile_images/" . $getFile);
+            return reposne()->json([
+                "sucesss" => true,
+                "meassage" => "contacts deleted sucessfully",
+            ], 200);
+        }
+    }
 }
