@@ -193,4 +193,23 @@ class ContactController extends Controller
             ], 200);
         }
     }
+
+    // endpoint for getting a single data
+    public function getSingleData($id)
+    {
+        $file_directory = $this->base_url . "/profile_images";
+        $fineData = $this->contacts::find($id);
+        if (!$fineData) {
+            return reposne()->json([
+                "sucesss" => true,
+                "meassage" => "contacts with id doesnt exist",
+            ], 500);
+        }
+
+        return reposne()->json([
+            "sucesss" => true,
+            "data" => $fineData,
+            "file_directory" => $file_directory,
+        ], 200);
+    }
 }
