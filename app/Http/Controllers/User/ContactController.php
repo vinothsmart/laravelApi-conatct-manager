@@ -212,4 +212,24 @@ class ContactController extends Controller
             "file_directory" => $file_directory,
         ], 200);
     }
+
+    // this function is to search for data as well as paginating our data searched
+    public function searchData($search, $pagination = null, $token)
+    {
+        $file_directory = $this->base_url . "/profile_images";
+        $user = auth("users")->authenticate($token);
+        $user_id = $user->id;
+        if ($pagination == null || $pagination == "") {
+
+            $non_paginated_search_query = $this->contacts::where("user_id", $user_id)->where(function ($query) use ($search) {
+                $query->where("firstname", "LIKE", "%$search%")->orWhere("lastname", "LIKE", "%$search%")->orWhere("email", "LIKE", "%$search%")->orWhere("phonenumber", "LIKE", "%$search%");
+            })->orderBy("id", "DESC")->get()->toArray();
+            return reposne()->json([
+                "sucesss" => true,
+                "data" => $non_paginated_search_query,
+                "file_directory" => $file_directory,
+            ], 200);
+        }
+
+    }
 }
