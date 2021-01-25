@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Contacts;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -13,11 +14,11 @@ class ContactController extends Controller
     protected $contacts;
     protected $base_url;
 
-    public function __construct()
+    public function __construct(UrlGenerator $urlGenerator)
     {
         $this->middleware("auth:users");
-        $this->contacts = new Contacts;
         $this->base_url = $urlGenerator->to("/");
+        $this->contacts = new Contacts;
     }
 
     // this function end-point is to create a new contact specific to a user
