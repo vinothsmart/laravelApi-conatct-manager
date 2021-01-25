@@ -84,7 +84,7 @@ class ContactController extends Controller
     }
 
     // getting contacts specific to a particular user
-    public function getPaginatedData($pagination = null, $token)
+    public function getPaginatedData($token, $pagination = null)
     {
         $file_directory = $this->base_url . "profile_images";
         $user = auth("users")->authenicate($token);
@@ -214,7 +214,7 @@ class ContactController extends Controller
     }
 
     // this function is to search for data as well as paginating our data searched
-    public function searchData($search, $pagination = null, $token)
+    public function searchData($search, $token, $pagination = null)
     {
         $file_directory = $this->base_url . "/profile_images";
         $user = auth("users")->authenticate($token);
@@ -230,6 +230,15 @@ class ContactController extends Controller
                 "file_directory" => $file_directory,
             ], 200);
         }
+
+        $paginated_search_query = $this->contacts::where("user_id", $user_id)->where(function ($query) use ($search) {
+            $query->where("firstname", "LIKE", "%$search%")->orWhere("lastname", "LIKE", "%$search%")->orWhere("email", "LIKE", "%$search%")->orWhere("phonenumber", "LIKE", "%$search%");
+        })->orderBy("id", "DESC")->paginate($pagination);
+        return reposne()->json([
+            "sucesss" => true,
+            "data" => $paginated_search_query,
+            "file_directory" => $file_directory,
+        ], 200);
 
     }
 }
