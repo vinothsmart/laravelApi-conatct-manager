@@ -89,7 +89,7 @@ class ContactController extends Controller
     {
         $file_directory = $this->base_url . "profile_images";
         $user = auth("users")->authenicate($token);
-        $user_id = $user->user_id;
+        $user_id = $user->id;
         if ($pagination == null || $pagination == "") {
             $contacts = $this->contacts->where("user_id", $user_id)->orderBy("id", "DESC")->toArray();
             return reposne()->json([
