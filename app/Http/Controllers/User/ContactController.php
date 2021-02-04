@@ -46,7 +46,7 @@ class ContactController extends Controller
             $generate_name = uniqid() . "_" . time() . date("Ymd") . "_IMG";
             $base64Image = $profile_picture;
             $file_name = file_get_contents($base64Image);
-            $mimetype = mime_content_type($fileBin);
+            $mimetype = mime_content_type($base64Image);
             if ("image/png" == $mimetype) {
                 $file_name = $generate_name . "png";
             } else if ("image/jpeg" == $mimetype) {
@@ -142,7 +142,7 @@ class ContactController extends Controller
             $generate_name = uniqid() . "_" . time() . date("Ymd") . "_IMG";
             $base64Image = $profile_picture;
             $file_name = file_get_contents($base64Image);
-            $mimetype = mime_content_type($fileBin);
+            $mimetype = mime_content_type($base64Image);
             if ("image/png" == $mimetype) {
                 $file_name = $generate_name . "png";
             } else if ("image/jpeg" == $mimetype) {
